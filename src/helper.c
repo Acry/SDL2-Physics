@@ -7,6 +7,7 @@ void init(void)
 
 SDL_Init(SDL_INIT_EVERYTHING);
 Window = SDL_CreateWindow("", 0, 0, 0, 0, SDL_WINDOW_HIDDEN);
+TTF_Init();
 
 //BEGIN ICON
 SDL_Surface *icon;
@@ -23,7 +24,7 @@ SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 
 void exit_(void)
 {
-
+TTF_Quit();
 SDL_DestroyRenderer(Renderer);
 SDL_DestroyWindow(Window);
 SDL_Quit();
