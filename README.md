@@ -1,21 +1,27 @@
 This is a C-SDL series about physics
 
-code 1 shows how to:  
+Scaling 1 shows how to...  
 
   * get display's DPI, shouldn't it be PPI?
   * set window Size in SI-Lenght-Unit centimeters
   * set an visual entity's size in the same unit
 
-code 1a shows how to:  
+![pic 0](./test.jpg)  
+
+Scaling 2 shows how to...  
   * render Textures in a real world map scaling.
   * render a scale bar with description.
 
+![pic 0a](./shot_0a_s.jpg)  
+
+Velocity 1 shows how to...
+   * apply horizontal velocity  
+   * press mouse button 1 to reset  
+
+![bullet](./bullet.gif)  
+
 Useful links:  
 [SDL2](https://www.libsdl.org/) [SDL-Discourse](https://discourse.libsdl.org) [More Example Code](https://gist.github.com/Acry/baa861b8e370c6eddbb18519c487d9d8)
-
-Screenshot:  
-![pic 0](./test.jpg)  
-![pic 0a](./shot_0a_s.jpg)  
 
 Assets:  
 Tree:  
