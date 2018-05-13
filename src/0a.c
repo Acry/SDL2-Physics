@@ -150,14 +150,6 @@ SDL_SetWindowTitle(Window, title);
 SDL_ShowWindow(Window);
 //END WINDOW
 
-
-//giving Box a size in centimeters
-box.w		= roundf(2.0/CENTI_PER_INCH*dpi.x);
-box.h		= roundf(2.0/CENTI_PER_INCH*dpi.y);
-
-box.x		= ww/2-box.w/2;
-box.y		= wh/2-box.h/2;
-
 SDL_Event event;
 int running = 1;
 //END   INIT
