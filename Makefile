@@ -5,7 +5,7 @@ LDFLAGS  = `sdl2-config --libs` -lSDL2_image -lSDL2_ttf -lm
 .SUFFIXES: .c .o
 
 srcdir	 =src/
-TARGETS	 = 0 0a 1
+TARGETS	 = 0 0a 1 3
 
 .PHONY: all
 all: $(TARGETS)
