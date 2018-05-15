@@ -20,6 +20,16 @@ Velocity 1 shows how to...
 
 ![bullet](./bullet.gif)  
 
+
+Gravity 1 shows how to...
+   * calculating earth's gravity  
+   * calculate falling time  
+   * apply that gravity on an object  
+   * press left mouse button to start falling  
+   * press right mouse button to reset  
+   * This Demo also shows why we need interpoltion (prediction) and derivates.  
+![crane](./gravity.gif)  
+
 Useful links:  
 [SDL2](https://www.libsdl.org/) [SDL-Discourse](https://discourse.libsdl.org) [More Example Code](https://gist.github.com/Acry/baa861b8e370c6eddbb18519c487d9d8)
 
