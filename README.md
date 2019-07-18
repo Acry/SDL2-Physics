@@ -3,13 +3,15 @@
 # This is a C-SDL series about physics.
 
 
-No matter what type of simulation or game one starts, one needs units or World-Units and a World-Coordinate-System to measure distance and apply velocity - if it is the real world or not.
+No matter what type of simulation or game one starts, one needs units or World-Units and a World-Coordinate-System to measure distance and apply velocity - if it is the real world or not. I think getting physics right in first place is cruicial for every program with a time loop.
+
+Getting the Physics right can be pretty hard.
 
 ## Measurement and Scaling
 
-### Scaling 1
-
 Creating Objects in SI-Units.
+
+### Scaling 1
 
 If the program has been compiled and run, it should show a window with a blue rectangle inside. Well, that seems not very exciting and is something every beginner can do right?
 
@@ -26,16 +28,13 @@ Scaling 1 shows how to...
 Take a ruler and measure if the window without title is 13 time 9 centimeters and the box is 2 x 2 cm.
 
 Hint for users of the English System: 
-1 cm = 0.39370079 inches an 1 in = 2.54 cm.
+1 cm = 0.39370079 inches and 1 inch = 2.54 cm.
 
 `#define CENTI_PER_INCH 2.54`
 
 Pixels, points, dots - everything the same?
 
-Actually a Point is a mathematical (abstract) term.
-A dot is for example something drawn (written) or  printed on paper (applied).
-A pixel has really more meanings. It can be the the smallest rectangle of a picture during coding and runtime and it can be a tiny, projected, illuminated part (any shape) of the emitter to the display.
-
+Actually a Point is a mathematical (abstract) term. A dot is for example something drawn (written) or  printed on paper (applied). A pixel has really more meanings. It can be the the smallest rectangle of a picture during coding and runtime and it can be a tiny, projected, illuminated part (any shape) of the emitter to the display - however it is a logical unit which can be applied if emmited.
 
 ### Scaling 2
 
@@ -50,6 +49,7 @@ Scaling 2 shows how to...
 
 ## Motion in 1 Dimension
 
+Now that we have physical metrics, we can apply motion.
 
 ![FreeFall](./free_fall.png)  
 Typical Diagram of a free fall.
@@ -72,12 +72,12 @@ Velocity 1 shows how to...
 
 ![bullet](./bullet.gif)  
 
+
 ## State Integration
 
 Integrating the Equations of Motion
 
-The Physics on this level is really simple, not to say simplified. But, before one can move on with coding there is no reason to go in depth in physics since the low level gamestate, this is the state where visible entities appearance is defined. Points should be at the right time at the right spot. 
-
+The Physics until this level are really simple, not to say simplified. But, before one can move on with coding there is no reason to go in depth in physics since the low level gamestate, this is the state where visible entities appearance is defined. Points should be at the right time at the right spot.
 
 ### Time and Steps
 
@@ -240,14 +240,10 @@ Other Time-Step methods:
 A Notation is a distinct (defined) way to note (write) something. Hence our Keyboard is still limited and people do things for reasons.
 
 Sometimes it is necessary to work with really large or really small numbers. As example, the gravitational constant, a quantity that relates the force two objects exert on each other, is a very small number. Written in standard decimal notation, it is equal to the following:
-![](notation_1.png)
-For small numbers like the gravitational constant, it’s pretty inconvenient to have to write out
-all the zeros. Fortunately, there is something known as scientific notation that can be used
-to express large or small numbers in a more compact form. Under this system, numbers are
-written as a value between 0 and 10, the letter “e,” and a number that represents how many
-powers of ten are in the value. For example, the gravitational constant could be written more
-compactly using scientific notation:
-![](notation_2.png)
+![](notation_1.png)  
+For small numbers like the gravitational constant, it’s pretty inconvenient to have to write out all the zeros. Fortunately, there is something known as scientific notation that can be used to express large or small numbers in a more compact form. Under this system, numbers are written as a value between 0 and 10, the letter “e,” and a number that represents how many
+powers of ten are in the value. For example, the gravitational constant could be written more compactly using scientific notation:
+![](notation_2.png)  
 For numbers with a magnitude of less than one, the number after the letter “e” is negative.
 For values with a magnitude greater than one, the number after the letter “e” is positive.
 
@@ -255,12 +251,7 @@ The mass of Earth’s moon, for instance, is a very large number and would be ex
 
 An alternative form of scientific notation is to use a “10” raised to the power of the number of zeros in the value. For example, the mass of Earth’s moon could be alternatively expressed as 7.3483×10^22 kg. If the magnitude of the number is less than one, the exponent on the power of ten would be negative as in 6.67×10^-11.
 
-You will use scientific notation when you incorporate physics into your game programs,
-for example, when you define constants like the gravitational constant.
-Most computer languages recognize scientific notation, so you can incorporate it into your game programs. For example, the following snippet of code would be perfectly acceptable in the Java, C, or C# programming languages:
-
-
-the following line of code would be perfectly acceptable in the Java, C, or C#:
+You will use scientific notation when you incorporate physics into your game programs, for example, when you define constants like the gravitational constant. Most computer languages recognize scientific notation, so you can incorporate it into your game programs. For example, the following snippet of code would be perfectly acceptable in the Java, C, or C# programming languages:
 
 `double G = 6.67e-11;`
 
@@ -272,25 +263,24 @@ void earth_gravity(void)
 	//to the center of the earth
 	float earth_mass		= 5.9736e+24;	// in kg
 	float earth_radius		= 6.375e+6;		// in km
-	float gc				= 6.674e-11;	// gravitational constant
+	float gc			= 6.674e-11;	// gravitational constant
 	g = ( gc  * earth_mass ) / ( earth_radius * earth_radius );
 }
 ```
 Dealing with long numbers.
+
 `5.c` shows the time resolution in C and uses scientific notation, too.
 
 #### Time and Integration
 
 In `5a.c` to `5d.c` I implemented the functions to query the high resolution timer in different datatypes. I used float, double and long double and hence SDL queries it with an `unsigned long int` 5d works with those.
 
-High performance timers will not be available on all platforms and `float` and `double` will not have the same calculation speed across different hardware.
+High performance timers will not be available on all platforms and `float` and `double` will not have the same calculation speed across different hardware. There are many options and constraints that will effect the proper implementation of a simulation.
 
-There are many options and constraints that will effect the proper implementation of a simulation.
-
-Before I move on to State-Integration I want to emphasize and clarify one thing:
+Before I move on to State-Integration I want to emphasize and clarify two things:
 
 Logic-Updates per second & Image-Updates per second, do not have to be equally often per second. They are two things.
-
+And a time step is crucial for the integration but both a different subjects, too.
 
 #### State Integration
 
@@ -312,12 +302,13 @@ h = 490 m
 The formula in C-Notation:
 `distance = gravity * powf(time,2) * 0.5;`
 
-In `6.c` I will use the time difference instead utilizing the higher resolution iTime function and see if there is a difference while running the program.
+In `6.c` I will use the time difference instead, utilizing the high resolution iTime function and see if there is a difference while running the program.
 
 Starting with probably the most easiest method for integration: Explicit Euler
 
 The first step in applying various numerical schemes that emanate from Euler method would be to write Newton's equations of motion as two coupled first-order differential equations.
 
+...TBD
 
 Explicit Euler integration updates the velocity and position as:
 
@@ -329,7 +320,7 @@ v += g * float_dt_in_seconds;
 z -= float_dt_in_seconds * v;
 ```
 
-Calculating Pixel Position from real meters:
+Calculating the pixel position from real meters:
 
 ```c
 box.data.frac.pos.y 	= (float)wh-(real_meter_y*z)-box.data.frac.size.y;
@@ -342,24 +333,25 @@ Two steps of Euler-Integration.
 ![](Euler_method.svg.png)
 Depicting the miss-callculation of the Euler-method.
 
-#### Integration Methods:
+#### More Integration Methods:
 
 Numerical Integration of Newton's Equations: 
 
-We want Finite Difference Methods, since the integration should finite during a time-step.
+We want Finite Difference Methods, since the integration should finish during a time-step.
 
 [IH / NIH - Syndrom](https://en.wikipedia.org/wiki/Not_invented_here)  
 
 For me it does not matter who invented it, which method is named after whom or who thinks he invented it first or thought about it first. I think it is an ridiculous discussion - the only concurrency I think about are race conditions. In my opinion a method should be named after what it does and not after a person.
 
-
-
-nearest neighbor approach
-interpolation
-extrapolation
+...TBD
+Nearest neighbor approach
+Interpolation
+Extrapolation
+Derivates
+...
 
 One Step Methods
-* Euler
+* Explicit Euler
 
 More Step Methos
 * Leapfrog
@@ -380,6 +372,9 @@ Euler-Richardson Method
 
 
 Levels or order of Integration
+
+##More motion examples
+Boucing Ball, Spring, leaf...
 
 ## Notes
 
