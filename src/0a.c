@@ -12,13 +12,12 @@
  * 
  * DEFINED PROGRESS GOALS:
  * 
- * Bring up a scaling bar
- * 	* consiting of rects
- *	describe it with ttf
+ * 	Bring up a scaling bar
+ * 	consisting of rects and describe it with ttf
  * 
- * set up a arithmetic scaling
- * show the result
- * Tree, elephant, yacht
+ * 	set up a arithmetic scaling
+ * 	show the result
+ * 	Tree, elephant, yacht
  * 
  * 
  * The tree has a height of 30 m in real

@@ -121,7 +121,7 @@ SDL_ShowWindow(Window);
 //END WINDOW
 float currentTime = 0.0f;
 float accumulator = 0.0f;
-SDL_Log("foo: %d", foo);
+
 SDL_Event event;
 int running = 1;
 //END   INIT

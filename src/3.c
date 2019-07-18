@@ -12,7 +12,7 @@
  * press left mouse button to start falling
  * press right mouse button to reset
  * 
- * This Demo also shows why we need interpoltion (prediction) and derivates.
+ * This Demo also shows why we need interpoltion (prediction) and derivatives.
  * 
  */
 
